@@ -1,0 +1,22 @@
+.container {
+  padding-left: 2rem;
+}
+.pageHeader {
+  font-size: 2rem;
+  margin: 1rem;
+  font-weight: 700;
+}
+.projectContainer {
+  padding-left: 2rem;
+}
+.projectCategories {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.divide {
+  border: 1px solid #626060;
+}
