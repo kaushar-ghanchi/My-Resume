@@ -20,3 +20,26 @@
 .divide {
   border: 1px solid #626060;
 }
+.list {
+  border: 1px solid #fff;
+  padding: 5px;
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #fff;
+  justify-content: center;
+  gap: 10x;
+  padding: 10px;
+}
+.pagination button {
+  padding: 10px;
+  margin-left: 10px;
+}
+
+.active {
+  background: black;
+  color: #fff;
+  border: 1px solid #fff;
+}

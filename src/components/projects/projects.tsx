@@ -1,3 +1,5 @@
+import { useState } from "react";
+import Pagination from "./pagination";
 import styles from "./projects.module.scss";
 export const Projects = () => {
   const projectList = [
@@ -206,39 +208,53 @@ export const Projects = () => {
       ],
     },
   ];
+  const [currentPage, setCurrentPage] = useState(0);
+  const handlePagination = () => {
+    if (currentPage >= projectList.length - 1) {
+      setCurrentPage(0);
+    } else {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  const project = projectList[currentPage];
+  console.log(currentPage);
   return (
     <div className={styles.container}>
       <div className={styles.pageHeader}>Projects</div>
-      {projectList.map((project) => (
-        <div className={styles.projectContainer}>
-          <div className={styles.projectCategories}>
-            <div>
-              {project.company}- {project.city},{project.state}
-            </div>
-            <div>
-              {project.startDate}-{project.endDate}
-            </div>
-            <div>{project.position}</div>
-            <div>Responsibilities:</div>
+
+      <div className={styles.projectContainer}>
+        <div className={styles.projectCategories}>
+          <div>
+            {project.company}- {project.city},{project.state}
           </div>
           <div>
-            <ul>
-              {project.responsibilities.map((r) => (
-                <li>{r}</li>
-              ))}
-            </ul>
+            {project.startDate}-{project.endDate}
           </div>
-          <h3>Environments:</h3>
-          <div>
-            <ul>
-              {project.environments.map((item) => (
-                <li>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <div className={styles.divide}></div>
+          <div>{project.position}</div>
+          <div>Responsibilities:</div>
         </div>
-      ))}
+        <div>
+          <ul>
+            {project.responsibilities.map((r) => (
+              <li>{r}</li>
+            ))}
+          </ul>
+        </div>
+        <h3>Environments:</h3>
+        <div>
+          <ul>
+            {project.environments.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div className={styles.divide}></div>
+      </div>
+      <Pagination
+        length={projectList.length}
+        postPerPage={1}
+        handlePageClick={handlePagination}
+      />
     </div>
   );
 };

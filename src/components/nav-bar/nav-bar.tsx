@@ -1,34 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./nav-bar.module.scss";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+export const DropDownMenu = () => {
   return (
-    <div className={styles.container}>
-      <header className={styles.appHeader}>
-        <div className={styles.navContainer}>
-          <div>
-            <Link to="/home" className={styles.navLink}>
-              Home
-            </Link>
-          </div>
-          <div>
-            <Link to="/summary" className={styles.navLink}>
-              Summary
-            </Link>
-          </div>
-          <div>
-            <Link to="/skills" className={styles.navLink}>
-              Skills
-            </Link>
-          </div>
-          <div>
-            <Link to="/projects" className={styles.navLink}>
-              Projects
-            </Link>
-          </div>
-        </div>
-      </header>
+    <div className={styles.dropdownMenu}>
+      <ul className={styles.list}>
+        <li className={styles.listItem}>tic toe</li>
+      </ul>
+    </div>
+  );
+};
+
+function Navbar() {
+  const [showDropDown, setShowDropDown] = useState(false);
+  const handleMouseEnter = () => {
+    setShowDropDown(true);
+  };
+  const handleMouseExit = () => {
+    setShowDropDown(false);
+  };
+  console.log(showDropDown);
+  return (
+    <div className={styles.navContainer}>
+      <Link to="/home" className={styles.navLink}>
+        Home
+      </Link>
+      <Link to="/summary" className={styles.navLink}>
+        Summary
+      </Link>
+      <Link to="/skills" className={styles.navLink}>
+        Skills
+      </Link>
+      <Link to="/projects" className={styles.navLink}>
+        Projects
+      </Link>
+      <Link
+        to="/examples"
+        className={styles.navLink}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseExit}
+      >
+        Examples
+        {showDropDown && <DropDownMenu />}
+      </Link>
     </div>
   );
 }
