@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+  height: 15rem;
+  border: 1px solid #000;
+  background-color: rgb(236, 240, 240);
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+.block {
+  display: flex;
+  flex-direction: row;
+  width: 15rem;
+  height: 5rem;
+}
+.item {
+  width: 5rem;
+  height: 5rem;
+  border: 1px solid #030212;
+  font-size: 3rem;
+  align-content: center;
+  text-align: center;
+}
+.winnerText {
+  font-size: 2rem;
+  color: blue;
+}

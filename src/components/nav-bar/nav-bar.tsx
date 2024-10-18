@@ -1,18 +1,10 @@
 import React, { useState } from "react";
 import styles from "./nav-bar.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { navigation, type MenuItem } from "../../navigation/navigation";
 
-export const DropDownMenu = () => {
-  return (
-    <div className={styles.dropdownMenu}>
-      <ul className={styles.list}>
-        <li className={styles.listItem}>tic toe</li>
-      </ul>
-    </div>
-  );
-};
-
-function Navbar() {
+const MenuLink = ({ route }: { route: MenuItem }) => {
+  const navigate = useNavigate();
   const [showDropDown, setShowDropDown] = useState(false);
   const handleMouseEnter = () => {
     setShowDropDown(true);
@@ -20,30 +12,45 @@ function Navbar() {
   const handleMouseExit = () => {
     setShowDropDown(false);
   };
-  console.log(showDropDown);
+  if (!route) {
+    return null;
+  }
   return (
-    <div className={styles.navContainer}>
-      <Link to="/home" className={styles.navLink}>
-        Home
-      </Link>
-      <Link to="/summary" className={styles.navLink}>
-        Summary
-      </Link>
-      <Link to="/skills" className={styles.navLink}>
-        Skills
-      </Link>
-      <Link to="/projects" className={styles.navLink}>
-        Projects
-      </Link>
+    <div>
       <Link
-        to="/examples"
+        to={route.path}
         className={styles.navLink}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseExit}
       >
-        Examples
-        {showDropDown && <DropDownMenu />}
+        {route.name}
+        {route.children && showDropDown && (
+          <div className={styles.dropdownMenu}>
+            <ul className={styles.list}>
+              {route.children.map((child, i) => (
+                <li>
+                  <Link to={child.path} className={styles.listItem}>
+                    {child.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </Link>
+    </div>
+  );
+};
+
+function Navbar() {
+  return (
+    <div className={styles.navContainer}>
+      {navigation.map((route, index) => {
+        if (route.isPrivate && route.isMenu) {
+          return <MenuLink key={index} route={route} />;
+        }
+      })}
+      
     </div>
   );
 }
