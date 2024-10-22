@@ -1,6 +1,9 @@
+import { BookStore } from "../components/examples/book-store/book-store";
 import Counter from "../components/examples/counter/counter";
 import { Examples } from "../components/examples/examples";
+import { FormInput } from "../components/examples/form-input/form-input";
 import TicTacToe from "../components/examples/tic-tac-toe/tic-tac-toe";
+import { Todo } from "../components/examples/todo-list/todo-list";
 import Home from "../components/home-page/home-page";
 import Projects from "../components/projects/projects";
 import Skills from "../components/skills/skills";
@@ -68,6 +71,27 @@ export const navigation: MenuItem[] = [
         path: "/examples/tictac",
         name: "Tictac",
         element: <TicTacToe />,
+        isMenu: true,
+        isPrivate: true,
+      },
+      {
+        path: "/examples/input",
+        name: "Form input",
+        element: <FormInput />,
+        isMenu: true,
+        isPrivate: true,
+      },
+      {
+        path: "/examples/todo",
+        name: "Todo list",
+        element: <Todo />,
+        isMenu: true,
+        isPrivate: true,
+      },
+      {
+        path: "/examples/library",
+        name: "Book store",
+        element: <BookStore />,
         isMenu: true,
         isPrivate: true,
       },

@@ -217,7 +217,7 @@ export const Projects = () => {
     }
   };
   const project = projectList[currentPage];
-  console.log(currentPage);
+  
   return (
     <div className={styles.container}>
       <div className={styles.pageHeader}>Projects</div>
